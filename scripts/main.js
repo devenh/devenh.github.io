@@ -2,6 +2,8 @@ var React = require('react');
 var Backbone = require("backbone");
 Backbone.$ = require("jquery");
 
+var HomePageComponent = require("./components/HomePageComponent");
+
 var App = Backbone.Router.extend({
 	routes: {
 		"": "home",
@@ -10,10 +12,7 @@ var App = Backbone.Router.extend({
 
 	home: function() {
 		React.render(
-			<div>
-				<h1>Home Page</h1>
-				<h3> Testing router </h3>
-			</div>,
+			<HomePageComponent />,
 			document.getElementById('container')
 		);
 	}

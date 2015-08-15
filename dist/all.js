@@ -32508,11 +32508,34 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":32}],160:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    render: function render() {
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'h1',
+                null,
+                ' Welcome to my home page everyone '
+            )
+        );
+    }
+});
+
+},{"react":159}],161:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
 var Backbone = require("backbone");
 Backbone.$ = require("jquery");
+
+var HomePageComponent = require("./components/HomePageComponent");
 
 var App = Backbone.Router.extend({
 	routes: {
@@ -32521,20 +32544,7 @@ var App = Backbone.Router.extend({
 	},
 
 	home: function home() {
-		React.render(React.createElement(
-			"div",
-			null,
-			React.createElement(
-				"h1",
-				null,
-				"Home Page"
-			),
-			React.createElement(
-				"h3",
-				null,
-				" Testing router "
-			)
-		), document.getElementById('container'));
+		React.render(React.createElement(HomePageComponent, null), document.getElementById('container'));
 	}
 });
 
@@ -32542,7 +32552,7 @@ var myRouter = new App();
 
 Backbone.history.start();
 
-},{"backbone":1,"jquery":4,"react":159}]},{},[160])
+},{"./components/HomePageComponent":160,"backbone":1,"jquery":4,"react":159}]},{},[161])
 
 
 //# sourceMappingURL=all.js.map
