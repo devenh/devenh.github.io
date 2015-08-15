@@ -5,6 +5,12 @@ module.exports = React.createClass({
         return (
             <div>
                 <h1> Welcome to my home page everyone </h1> 
+                <h1> Welcome to my home page everyone </h1> 
+                <h1> Welcome to my home page everyone </h1> 
+                <h1> Welcome to my home page everyone </h1> 
+                <h1> Welcome to my home page everyone </h1> 
+                <h1> Welcome to my home page everyone </h1> 
+                <h1> Welcome to my home page everyone </h1> 
             </div>        
         );
     }

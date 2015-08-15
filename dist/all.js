@@ -32522,37 +32522,213 @@ module.exports = React.createClass({
             React.createElement(
                 'h1',
                 null,
-                ' Welcome to my home page everyone '
+                ' Course Lessons '
             )
         );
     }
 });
 
 },{"react":159}],161:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    render: function render() {
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'h1',
+                null,
+                ' Welcome to my Course page everyone '
+            )
+        );
+    }
+});
+
+},{"react":159}],162:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    render: function render() {
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'h1',
+                null,
+                ' Welcome to my home page everyone '
+            ),
+            React.createElement(
+                'h1',
+                null,
+                ' Welcome to my home page everyone '
+            ),
+            React.createElement(
+                'h1',
+                null,
+                ' Welcome to my home page everyone '
+            ),
+            React.createElement(
+                'h1',
+                null,
+                ' Welcome to my home page everyone '
+            ),
+            React.createElement(
+                'h1',
+                null,
+                ' Welcome to my home page everyone '
+            ),
+            React.createElement(
+                'h1',
+                null,
+                ' Welcome to my home page everyone '
+            ),
+            React.createElement(
+                'h1',
+                null,
+                ' Welcome to my home page everyone '
+            )
+        );
+    }
+});
+
+},{"react":159}],163:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    render: function render() {
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'h1',
+                null,
+                ' Lesson Details '
+            )
+        );
+    }
+});
+
+},{"react":159}],164:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    render: function render() {
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'h1',
+                null,
+                ' Login Page '
+            )
+        );
+    }
+});
+
+},{"react":159}],165:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    render: function render() {
+        return React.createElement('div', null);
+    }
+});
+
+},{"react":159}],166:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    render: function render() {
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'h1',
+                null,
+                ' Registration Page '
+            )
+        );
+    }
+});
+
+},{"react":159}],167:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
 var Backbone = require("backbone");
 Backbone.$ = require("jquery");
 
+var NavBarComponent = require("./components/NavBarComponent");
 var HomePageComponent = require("./components/HomePageComponent");
+var LoginComponent = require("./components/LoginComponent");
+var RegisterComponent = require("./components/RegisterComponent");
+var CourseListComponent = require("./components/CourseListComponent");
+var CourseLessonsComponent = require("./components/CourseLessonsComponent");
+var LessonDetailsComponent = require("./components/LessonDetailsComponent");
 
 var App = Backbone.Router.extend({
 	routes: {
 		"": "home",
-		"home": "home"
+		"home": "home",
+		"login": "login",
+		"registration": "registration",
+		"courselist": "courseList",
+		"courselessons": "courseLessons",
+		"lessondetails": "lessonDetails"
 	},
 
 	home: function home() {
 		React.render(React.createElement(HomePageComponent, null), document.getElementById('container'));
+	},
+	login: function login() {
+		React.render(React.createElement(LoginComponent, null), document.getElementById('container'));
+	},
+	registration: function registration() {
+		React.render(React.createElement(RegisterComponent, null), document.getElementById('container'));
+	},
+	courseList: function courseList() {
+		React.render(React.createElement(CourseListComponent, null), document.getElementById('container'));
+	},
+	courseLessons: function courseLessons() {
+		React.render(React.createElement(CourseLessonsComponent, null), document.getElementById('container'));
+	},
+	lessonDetails: function lessonDetails() {
+		React.render(React.createElement(LessonDetailsComponent, null), document.getElementById('container'));
 	}
 });
+
+React.render(React.createElement(NavBarComponent, null), document.getElementById("nav"));
 
 var myRouter = new App();
 
 Backbone.history.start();
 
-},{"./components/HomePageComponent":160,"backbone":1,"jquery":4,"react":159}]},{},[161])
+},{"./components/CourseLessonsComponent":160,"./components/CourseListComponent":161,"./components/HomePageComponent":162,"./components/LessonDetailsComponent":163,"./components/LoginComponent":164,"./components/NavBarComponent":165,"./components/RegisterComponent":166,"backbone":1,"jquery":4,"react":159}]},{},[167])
 
 
 //# sourceMappingURL=all.js.map
