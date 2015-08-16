@@ -32529,120 +32529,704 @@ module.exports = React.createClass({
 });
 
 },{"react":159}],161:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var React = require('react');
+var $ = require("jquery");
 
 module.exports = React.createClass({
-    displayName: 'exports',
+  displayName: "exports",
 
-    render: function render() {
+  getInitialState: function getInitialState() {
+    var that = this;
+    var courselist = $.post("http://192.168.10.60:1234/webservice/login.php", { username: "Ruben Hidalgo" }, function () {
+      that.forceUpdate();
+    }, "JSON");
+    return {
+      courses: courselist
+    };
+  },
+  render: function render() {
+    var that = this;
+    var phpData = this.state.courses;
+    if (phpData.readyState === 4) {
+      var obj = JSON.parse(phpData.responseText);
+      var test = obj.map(function (model) {
         return React.createElement(
-            'div',
-            null,
+          "div",
+          null,
+          React.createElement(
+            "div",
+            { onClick: that.doThings(model) },
             React.createElement(
-                'h1',
-                null,
-                ' Welcome to my Course page everyone '
+              "p",
+              null,
+              model["course_name"]
             )
+          )
         );
+      });
+    } else {
+      console.log("not ready", phpData);
     }
+    return React.createElement(
+      "div",
+      null,
+      React.createElement(
+        "h1",
+        null,
+        " Welcome to my Course page everyone "
+      ),
+      React.createElement(
+        "button",
+        { onClick: this.pullPHP },
+        "testing PHP"
+      ),
+      test
+    );
+  },
+  pullPHP: function pullPHP() {
+    var phpData = this.state.courses;
+    var obj = JSON.parse(phpData.responseText);
+    // console.log(obj);
+    for (var i = 0; i < obj.length; i++) {
+      var current = obj[i];
+      console.log(current["course_name"]);
+    }
+  },
+  doThings: function doThings(model) {
+    return function (e) {
+      e.preventDefault();
+      var target = $(e.target);
+      // console.log(target);
+      console.log(model["course_id"]);
+    };
+  }
 });
 
-},{"react":159}],162:[function(require,module,exports){
-'use strict';
+},{"jquery":4,"react":159}],162:[function(require,module,exports){
+"use strict";
 
 var React = require('react');
 
 module.exports = React.createClass({
-    displayName: 'exports',
+    displayName: "exports",
 
     render: function render() {
         return React.createElement(
-            'div',
-            null,
+            "div",
+            { id: "container", className: "container intro-effect-push" },
             React.createElement(
-                'h1',
-                null,
-                ' Welcome to my home page everyone '
+                "div",
+                { className: "codrops-top clearfix" },
+                React.createElement(
+                    "span",
+                    { className: "right" },
+                    React.createElement(
+                        "a",
+                        { className: "", href: "#" },
+                        React.createElement(
+                            "span",
+                            null,
+                            "Log In"
+                        )
+                    )
+                )
             ),
             React.createElement(
-                'h1',
-                null,
-                ' Welcome to my home page everyone '
+                "header",
+                { className: "header" },
+                React.createElement(
+                    "div",
+                    { className: "bg-img" },
+                    React.createElement("img", { src: "img/12.jpg", alt: "Background Image" })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "title" },
+                    React.createElement(
+                        "nav",
+                        { className: "codrops-demos" },
+                        React.createElement("a", { className: "current-demo", href: "index.html" })
+                    ),
+                    React.createElement(
+                        "h1",
+                        null,
+                        "CollabOrate"
+                    )
+                )
             ),
             React.createElement(
-                'h1',
-                null,
-                ' Welcome to my home page everyone '
+                "button",
+                { className: "trigger", id: "trigger1", onClick: this.doStuff, "data-info": "Click to learn more" },
+                React.createElement(
+                    "span",
+                    null,
+                    "trigger"
+                )
             ),
             React.createElement(
-                'h1',
-                null,
-                ' Welcome to my home page everyone '
+                "div",
+                { className: "title" },
+                React.createElement(
+                    "h1",
+                    { className: "secondheader" },
+                    "About CollabOrate"
+                ),
+                React.createElement(
+                    "p",
+                    { className: "subline" },
+                    "Made @ Startup Weekend Austin"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "by ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "People"
+                    ),
+                    " — Posted in ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "Inspiration"
+                    ),
+                    " on ",
+                    React.createElement(
+                        "strong",
+                        null,
+                        "May 21, 2014"
+                    )
+                )
             ),
             React.createElement(
-                'h1',
-                null,
-                ' Welcome to my home page everyone '
+                "article",
+                { className: "content" },
+                React.createElement(
+                    "div",
+                    null,
+                    React.createElement(
+                        "p",
+                        null,
+                        "We may define a food to be any substance which will repair the functional waste of the body, increase its growth, or maintain the heat, muscular, and nervous energy. "
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        "In its most comprehensive sense, the oxygen of the air is a food; as although it is admitted by the lungs, it passes into the blood, and there re-acts upon the other food which has passed through the stomach. It is usual, however, to restrict the term food to such nutriment as enters the body by the intestinal canal. Water is often spoken of as being distinct from food, but for this there is no sufficient reason."
+                    ),
+                    React.createElement(
+                        "h3",
+                        null,
+                        "Flesh-formers, heat-givers, and bone-formers"
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        "Mineral matter is quite as necessary for plant as for animal life, and is therefore present in all food, except in the case of some highly-prepared ones, such as sugar, starch and oil. Children require a good proportion of calcium phosphate for the growth of their bones, whilst adults require less. The outer part of the grain of cereals is the richest in mineral constituents, white flour and rice are deficient. Wheatmeal and oatmeal are especially recommended for the quantity of phosphates and other salts contained in them. Mineral matter is necessary not only for the bones but for every tissue of the body."
+                    ),
+                    React.createElement(
+                        "p",
+                        null,
+                        "When haricots are cooked, the liquid is often thrown away, and the beans served nearly dry, or with parsley or other sauce. Not only is the food less tasty but important saline constituents are lost. The author has made the following experiments:—German whole lentils, Egyptian split red lentils and medium haricot beans were soaked all night (16 hours) in just sufficient cold water to keep them covered. The water was poured off and evaporated, the residue heated in the steam-oven to perfect dryness and weighed. After pouring off the water, the haricots were boiled in more water until thoroughly cooked, the liquid being kept as low as possible. The liquid was poured off as clear as possible, from the haricots, evaporated and dried. The ash was taken in each case, and the alkalinity of the water-soluble ash was calculated as potash (K2O). The quantity of water which could be poured off was with the German lentils, half as much more than the original weight of the pulse; not quite as much could be poured off the others."
+                    )
+                )
             ),
             React.createElement(
-                'h1',
-                null,
-                ' Welcome to my home page everyone '
+                "section",
+                { className: "related" },
+                React.createElement(
+                    "p",
+                    null,
+                    "blah"
+                ),
+                React.createElement(
+                    "div",
+                    null,
+                    React.createElement(
+                        "a",
+                        { href: "#" },
+                        React.createElement(
+                            "h4",
+                            null,
+                            "Link1"
+                        )
+                    )
+                ),
+                React.createElement(
+                    "div",
+                    null,
+                    React.createElement(
+                        "a",
+                        { href: "#" },
+                        React.createElement(
+                            "h4",
+                            null,
+                            "Link2"
+                        )
+                    )
+                )
             ),
             React.createElement(
-                'h1',
-                null,
-                ' Welcome to my home page everyone '
+                "div",
+                { className: "end" },
+                React.createElement(
+                    "h2",
+                    null,
+                    "sadfas fd"
+                )
             )
         );
     }
 });
 
 },{"react":159}],163:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var React = require('react');
 
 module.exports = React.createClass({
-    displayName: 'exports',
+  displayName: "exports",
 
-    render: function render() {
-        return React.createElement(
-            'div',
-            null,
+  render: function render() {
+    return React.createElement(
+      "div",
+      null,
+      React.createElement(
+        "nav",
+        { className: "navbar navbar-default navbar-fixed-top" },
+        React.createElement(
+          "div",
+          { className: "container" },
+          React.createElement(
+            "div",
+            { className: "navbar-header" },
             React.createElement(
-                'h1',
-                null,
-                ' Lesson Details '
+              "a",
+              { className: "navbar-brand", href: "./calc.html" },
+              "Collaborate"
             )
-        );
-    }
+          ),
+          React.createElement(
+            "div",
+            { id: "navbar", className: "navbar-collapse collapse" },
+            React.createElement(
+              "ul",
+              { className: "nav navbar-nav navbar-right" },
+              React.createElement(
+                "li",
+                null,
+                React.createElement(
+                  "a",
+                  { href: "../navbar/" },
+                  "Home"
+                )
+              ),
+              React.createElement(
+                "li",
+                null,
+                React.createElement(
+                  "a",
+                  { href: "../navbar-static-top/" },
+                  "Log Out"
+                )
+              )
+            )
+          )
+        )
+      ),
+      React.createElement(
+        "div",
+        { id: "h" },
+        React.createElement(
+          "div",
+          { className: "container precalculus" },
+          React.createElement(
+            "div",
+            { className: "row centered" },
+            React.createElement("br", null),
+            React.createElement("br", null),
+            React.createElement("br", null),
+            React.createElement("br", null),
+            React.createElement("br", null),
+            React.createElement("br", null),
+            React.createElement(
+              "h3",
+              { className: "logo aligncenter" },
+              "Collaborate",
+              React.createElement("br", null)
+            ),
+            React.createElement(
+              "h1",
+              null,
+              "Precalculus topics"
+            ),
+            React.createElement(
+              "div",
+              { className: "col-md-6 col-md-offset-3 mt" },
+              React.createElement(
+                "form",
+                { role: "form", action: "register.php", method: "post", enctype: "plain" },
+                React.createElement("input", { type: "email", name: "email", className: "subscribe-input", placeholder: "Enter Course Name", required: true }),
+                React.createElement(
+                  "button",
+                  { className: "btn btn-lg btn-green subscribe-submit", type: "submit" },
+                  "Search"
+                )
+              )
+            )
+          ),
+          React.createElement(
+            "div",
+            { className: "row" },
+            React.createElement(
+              "div",
+              { className: "continue" },
+              React.createElement("i", { className: "ion-chevron-down" })
+            )
+          )
+        )
+      ),
+      React.createElement(
+        "div",
+        { className: "container mt" },
+        React.createElement(
+          "div",
+          { className: "row" },
+          React.createElement(
+            "div",
+            { className: "col-md-6 col-md-offset-3 centered" },
+            React.createElement(
+              "h2",
+              null,
+              "Precalculus"
+            ),
+            React.createElement(
+              "div",
+              { className: "each" },
+              React.createElement(
+                "h4",
+                { id: "each-topic" },
+                React.createElement(
+                  "a",
+                  { href: "#" },
+                  "1. Function"
+                )
+              ),
+              React.createElement(
+                "div",
+                { id: "hidden" },
+                React.createElement(
+                  "h4",
+                  null,
+                  "Rate:"
+                ),
+                React.createElement(
+                  "div",
+                  { className: "rating" },
+                  React.createElement(
+                    "span",
+                    null,
+                    "☆"
+                  ),
+                  React.createElement(
+                    "span",
+                    null,
+                    "☆"
+                  ),
+                  React.createElement(
+                    "span",
+                    null,
+                    "☆"
+                  ),
+                  React.createElement(
+                    "span",
+                    null,
+                    "☆"
+                  ),
+                  React.createElement(
+                    "span",
+                    null,
+                    "☆"
+                  )
+                ),
+                React.createElement(
+                  "h4",
+                  null,
+                  "Ask a question!"
+                ),
+                React.createElement(
+                  "form",
+                  { role: "form", action: "register.php", method: "post", enctype: "plain" },
+                  React.createElement("input", { type: "email", name: "email", className: "subscribe-input", placeholder: "Enter question", required: true }),
+                  React.createElement(
+                    "button",
+                    { className: "btn btn-lg btn-green subscribe-submit", type: "submit" },
+                    "Search"
+                  )
+                )
+              )
+            ),
+            React.createElement(
+              "div",
+              { className: "each" },
+              React.createElement(
+                "h4",
+                { id: "each-topic" },
+                React.createElement(
+                  "a",
+                  { href: "#" },
+                  "2. Domain"
+                )
+              ),
+              React.createElement(
+                "div",
+                { id: "hidden" },
+                React.createElement(
+                  "div",
+                  { className: "rating" },
+                  React.createElement(
+                    "span",
+                    null,
+                    "☆"
+                  ),
+                  React.createElement(
+                    "span",
+                    null,
+                    "☆"
+                  ),
+                  React.createElement(
+                    "span",
+                    null,
+                    "☆"
+                  ),
+                  React.createElement(
+                    "span",
+                    null,
+                    "☆"
+                  ),
+                  React.createElement(
+                    "span",
+                    null,
+                    "☆"
+                  )
+                ),
+                React.createElement(
+                  "h4",
+                  null,
+                  "Ask a question!"
+                ),
+                React.createElement(
+                  "form",
+                  { role: "form", action: "register.php", method: "post", enctype: "plain" },
+                  React.createElement("input", { type: "email", name: "email", className: "subscribe-input", placeholder: "Enter question", required: true }),
+                  React.createElement(
+                    "button",
+                    { className: "btn btn-lg btn-green subscribe-submit", type: "submit" },
+                    "Search"
+                  )
+                )
+              )
+            ),
+            React.createElement(
+              "h4",
+              null,
+              React.createElement(
+                "a",
+                { href: "#" },
+                "3. Range"
+              )
+            )
+          )
+        )
+      ),
+      React.createElement(
+        "div",
+        { id: "g" },
+        React.createElement(
+          "div",
+          { className: "container" },
+          React.createElement(
+            "div",
+            { className: "row" },
+            React.createElement(
+              "div",
+              { className: "col-md-6 col-md-offset-3 centered" },
+              React.createElement(
+                "h2",
+                null,
+                "How It Works"
+              ),
+              React.createElement(
+                "h4",
+                null,
+                "The Steps Of Our Success"
+              )
+            )
+          ),
+          React.createElement(
+            "div",
+            { className: "row mt" },
+            React.createElement(
+              "div",
+              { className: "col-md-4" },
+              React.createElement(
+                "h4",
+                { className: "green" },
+                "STEP 1"
+              ),
+              React.createElement(
+                "p",
+                null,
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              ),
+              React.createElement(
+                "h4",
+                { className: "green mt" },
+                "STEP 2"
+              ),
+              React.createElement(
+                "p",
+                null,
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              )
+            ),
+            React.createElement(
+              "div",
+              { className: "col-md-4" },
+              React.createElement("img", { src: "assets/img/item.png", alt: "", className: "img-responsive aligncenter", "data-effect": "slide-bottom" })
+            ),
+            React.createElement(
+              "div",
+              { className: "col-md-4" },
+              React.createElement(
+                "h4",
+                { className: "green" },
+                "STEP 3"
+              ),
+              React.createElement(
+                "p",
+                null,
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              ),
+              React.createElement(
+                "h4",
+                { className: "green mt" },
+                "STEP 4"
+              ),
+              React.createElement(
+                "p",
+                null,
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              )
+            )
+          ),
+          React.createElement(
+            "div",
+            { className: "row mt" },
+            React.createElement(
+              "div",
+              { className: "col-md-4 col-md-offset-4 centered" },
+              React.createElement(
+                "button",
+                { className: "btn btn-lg btn-green" },
+                "Download Our PDF"
+              )
+            )
+          )
+        )
+      ),
+      React.createElement(
+        "div",
+        { className: "container" },
+        React.createElement(
+          "div",
+          { className: "row mtb" },
+          React.createElement(
+            "div",
+            { className: "col-md-6 col-md-offset-3 centered" },
+            React.createElement(
+              "p",
+              { className: "text28" },
+              React.createElement(
+                "a",
+                { href: "#" },
+                React.createElement("i", { className: "ion-social-twitter" })
+              ),
+              React.createElement(
+                "a",
+                { href: "#" },
+                React.createElement("i", { className: "ion-social-instagram" })
+              ),
+              React.createElement(
+                "a",
+                { href: "#" },
+                React.createElement("i", { className: "ion-social-facebook" })
+              )
+            ),
+            React.createElement(
+              "p",
+              null,
+              "Collaborate.com | Copyright 2015"
+            )
+          )
+        )
+      )
+    );
+  }
 });
 
 },{"react":159}],164:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var React = require('react');
+var jquery = require("jquery");
 
 module.exports = React.createClass({
-    displayName: 'exports',
+    displayName: "exports",
 
     render: function render() {
         return React.createElement(
-            'div',
+            "div",
             null,
             React.createElement(
-                'h1',
+                "h1",
                 null,
-                ' Login Page '
+                " Login Page "
+            ),
+            React.createElement("input", { ref: "username", type: "text" }),
+            React.createElement("input", { type: "text" }),
+            React.createElement(
+                "button",
+                { onClick: this.sendUser },
+                "Send User"
+            ),
+            React.createElement(
+                "a",
+                { onClick: this.cmon, href: "#" },
+                "Go Homeeee"
             )
         );
+    },
+    sendUser: function sendUser(e) {
+        console.log("function ran...");
+
+        var obj = {
+            username: this.refs.username.getDOMNode().value
+        };
+        console.log(obj);
+        $.post("http://192.168.10.60:1234/webservice/login.php", obj, function (data) {
+            console.log(data.message);
+        });
+    },
+    cmon: function cmon(e) {
+        window.location.reload();
     }
 });
 
-},{"react":159}],165:[function(require,module,exports){
+},{"jquery":4,"react":159}],165:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -32680,6 +33264,82 @@ module.exports = React.createClass({
 "use strict";
 
 var React = require('react');
+var $ = require("jquery");
+
+module.exports = React.createClass({
+  displayName: "exports",
+
+  getInitialState: function getInitialState() {
+    var that = this;
+    var courselist = $.post("http://192.168.10.60:1234/webservice/login.php", { username: "Ruben Hidalgo" }, function () {
+      that.forceUpdate();
+    }, "JSON");
+    return {
+      courses: courselist
+    };
+  },
+  render: function render() {
+    var that = this;
+    var phpData = this.state.courses;
+    if (phpData.readyState === 4) {
+      var obj = JSON.parse(phpData.responseText);
+      var test = obj.map(function (model) {
+        return React.createElement(
+          "div",
+          null,
+          React.createElement(
+            "div",
+            { onClick: that.doThings(model) },
+            React.createElement(
+              "p",
+              null,
+              model["course_name"]
+            )
+          )
+        );
+      });
+    } else {
+      console.log("not ready", phpData);
+    }
+    return React.createElement(
+      "div",
+      null,
+      React.createElement(
+        "h1",
+        null,
+        " Welcome to my Course page everyone "
+      ),
+      React.createElement(
+        "button",
+        { onClick: this.pullPHP },
+        "testing PHP"
+      ),
+      test
+    );
+  },
+  pullPHP: function pullPHP() {
+    var phpData = this.state.courses;
+    var obj = JSON.parse(phpData.responseText);
+    // console.log(obj);
+    for (var i = 0; i < obj.length; i++) {
+      var current = obj[i];
+      console.log(current["course_name"]);
+    }
+  },
+  doThings: function doThings(model) {
+    return function (e) {
+      e.preventDefault();
+      var target = $(e.target);
+      // console.log(target);
+      console.log(model["course_id"]);
+    };
+  }
+});
+
+},{"jquery":4,"react":159}],168:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
 var Backbone = require("backbone");
 Backbone.$ = require("jquery");
 
@@ -32690,6 +33350,7 @@ var RegisterComponent = require("./components/RegisterComponent");
 var CourseListComponent = require("./components/CourseListComponent");
 var CourseLessonsComponent = require("./components/CourseLessonsComponent");
 var LessonDetailsComponent = require("./components/LessonDetailsComponent");
+var ShowQuestionsComponent = require("./components/ShowQuestions");
 
 var App = Backbone.Router.extend({
 	routes: {
@@ -32699,26 +33360,29 @@ var App = Backbone.Router.extend({
 		"registration": "registration",
 		"courselist": "courseList",
 		"courselessons": "courseLessons",
-		"lessondetails": "lessonDetails"
+		"lessondetails": "lessonDetails",
+		"showquestions/:courseId": "showQuestions"
 	},
-
 	home: function home() {
-		React.render(React.createElement(HomePageComponent, null), document.getElementById('container'));
+		React.render(React.createElement(HomePageComponent, null), document.getElementById('containerDos'));
 	},
 	login: function login() {
-		React.render(React.createElement(LoginComponent, null), document.getElementById('container'));
+		React.render(React.createElement(LoginComponent, null), document.getElementById('containerDos'));
 	},
 	registration: function registration() {
-		React.render(React.createElement(RegisterComponent, null), document.getElementById('container'));
+		React.render(React.createElement(RegisterComponent, null), document.getElementById('containerDos'));
 	},
 	courseList: function courseList() {
-		React.render(React.createElement(CourseListComponent, null), document.getElementById('container'));
+		React.render(React.createElement(CourseListComponent, null), document.getElementById('containerDos'));
 	},
 	courseLessons: function courseLessons() {
-		React.render(React.createElement(CourseLessonsComponent, null), document.getElementById('container'));
+		React.render(React.createElement(CourseLessonsComponent, null), document.getElementById('containerDos'));
 	},
 	lessonDetails: function lessonDetails() {
-		React.render(React.createElement(LessonDetailsComponent, null), document.getElementById('container'));
+		React.render(React.createElement(LessonDetailsComponent, null), document.getElementById('containerDos'));
+	},
+	showQuestions: function showQuestions(courseId) {
+		React.render(React.createElement(ShowQuestionsComponent, null), document.getElementById('containerDos'));
 	}
 });
 
@@ -32728,7 +33392,7 @@ var myRouter = new App();
 
 Backbone.history.start();
 
-},{"./components/CourseLessonsComponent":160,"./components/CourseListComponent":161,"./components/HomePageComponent":162,"./components/LessonDetailsComponent":163,"./components/LoginComponent":164,"./components/NavBarComponent":165,"./components/RegisterComponent":166,"backbone":1,"jquery":4,"react":159}]},{},[167])
+},{"./components/CourseLessonsComponent":160,"./components/CourseListComponent":161,"./components/HomePageComponent":162,"./components/LessonDetailsComponent":163,"./components/LoginComponent":164,"./components/NavBarComponent":165,"./components/RegisterComponent":166,"./components/ShowQuestions":167,"backbone":1,"jquery":4,"react":159}]},{},[168])
 
 
 //# sourceMappingURL=all.js.map

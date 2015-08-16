@@ -9,52 +9,60 @@ var RegisterComponent = require("./components/RegisterComponent");
 var CourseListComponent = require("./components/CourseListComponent");
 var CourseLessonsComponent = require("./components/CourseLessonsComponent");
 var LessonDetailsComponent = require("./components/LessonDetailsComponent");
+var ShowQuestionsComponent = require("./components/ShowQuestions");
 
 var App = Backbone.Router.extend({
 	routes: {
-		"": "home",
-		"home": "home",
+		"" : "home",
+		"home" : "home",
 		"login": "login",
 		"registration": "registration",
 		"courselist": "courseList",
 		"courselessons": "courseLessons",
-		"lessondetails": "lessonDetails"
+		"lessondetails": "lessonDetails",
+		"showquestions/:courseId": "showQuestions"
 	},
-
 	home: function() {
 		React.render(
 			<HomePageComponent />,
-			document.getElementById('container')
+			document.getElementById('containerDos')
 		);
+
 	},
 	login: function() {
 		React.render(
 			<LoginComponent />,
-			document.getElementById('container')
+			document.getElementById('containerDos')
 		);
 	},
 	registration: function() {
 		React.render(
 			<RegisterComponent />,
-			document.getElementById('container')
+			document.getElementById('containerDos')
 		);
 	},
 	courseList: function() {
 		React.render(
 			<CourseListComponent />,
-			document.getElementById('container')
+			document.getElementById('containerDos')
 		);
 	},
 	courseLessons: function() {
 		React.render(
 			<CourseLessonsComponent />,
-			document.getElementById('container')
+			document.getElementById('containerDos')
 		);
 	},
 	lessonDetails: function() {
 		React.render(
 			<LessonDetailsComponent />,
-			document.getElementById('container')
+			document.getElementById('containerDos')
+		);
+	},
+	showQuestions: function(courseId){
+		React.render(
+			<ShowQuestionsComponent />,
+			document.getElementById('containerDos')
 		);
 	}
 });

@@ -142,9 +142,10 @@
 					noscroll,
 					isAnimating,
 					container = document.getElementById( 'container' ),
-					trigger = container.querySelector( 'button.trigger' );
+					// trigger = container.querySelector( 'button.trigger' );
 
 				function scrollY() {
+					console.log(docElem);
 					return window.pageYOffset || docElem.scrollTop;
 				}
 
